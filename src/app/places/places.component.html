@@ -1,0 +1,16 @@
+<!-- for loop for displaying all the images from the array of data but these data will be fetched from avail.ts and sent here -->
+<ul>
+  @for (place of places(); track place.id) {
+    <li class="place-item">
+      <button (click)="onSelectPlace(place)">
+        <img
+          [src]="'http://localhost:3000/' + place.image.src" 
+          [alt]="place.image.alt"
+        />
+        <!-- in places.ts in the fn parameter place which holds the model so when using place we can access the model's key -->
+
+        <h3>{{ place.title }}</h3>
+      </button>
+    </li>
+  }
+</ul>

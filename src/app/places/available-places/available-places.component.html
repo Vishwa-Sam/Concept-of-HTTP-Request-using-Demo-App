@@ -1,0 +1,21 @@
+<app-places-container title="Available Places">
+  @if (isFeteching() && !error()) {
+    <p class="fallback-text">Fetching Data Please Wait...</p>
+  }
+
+  @if (error()) {
+    <p class="fallback-text">{{ error() }}</p>
+  }
+
+  @if (places()) {
+    <app-places [places]="places()!" (selectPlace)="onSelectedPlace($event)" />
+  } @else if (places()?.length === 0) {
+    <p class="fallback-text">Unfortunately, no places could be found.</p>
+  }
+  <!-- if condition to conditionally render the images if the place() signals gets any values useing the set() from avail.ts -->
+
+  <dialog #duplicateDialog>
+    <p>This place is already added to your favourite Places</p>
+    <button (click)="closeDialog(duplicateDialog)">OK</button>
+  </dialog>
+</app-places-container>
